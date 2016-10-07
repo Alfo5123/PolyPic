@@ -1,8 +1,16 @@
 import numpy as np
+import individual
 import cv2
 
-# Create a black image
-img = np.zeros((512,512,3), np.uint8)
+# Load the image
+target = cv2.imread("IM_01.jpg")
+height, width = target.shape[:2]
 
-# Draw a diagonal blue line with thickness of 5 px
-img = cv2.line(img,(0,0),(511,511),(255,0,0),5)
+#Create an individual
+ind = individual.IndividualGen( 10 , height , width )
+
+# Measure its dissimilarity
+print ind.fitness(target) ;
+
+
+
