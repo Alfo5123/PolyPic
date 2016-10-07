@@ -23,11 +23,7 @@ class IndividualGen(object):
 
         self.individual = []
         for i in range(size):
-            center = ( rn.randint(1, self.width) , rn.randint(1,self.height) )
-            radius = rn.randint ( 1 , max( self.height/2 , self.width/2 ) )
-            color = ( rn.randint(1,255) , rn.randint(1,255) , rn.randint(1,255) )
-            alpha = 0.1*rn.random()
-            self.individual.append(circle.CircleGen( center, radius, color , alpha )) ;
+            self.individual.append(circle.CircleGen( height , width , 0.1 )) ;
 
 
     def write ( self ):
@@ -58,6 +54,17 @@ class IndividualGen(object):
         err = np.sum((current.astype("float") - target.astype("float")) ** 2)
         err /= float(current.shape[0] * current.shape[1]* current.shape[2] )
         return err
+
+
+    def mutation ( self ):
+
+        # Pick a random polygon and randomize its properties
+
+        index = rn.randint(1,self.size)
+        self.individual[index] = circle.CircleGen( self.height , self.width , 0.1 ) ;
+
+
+
 
 
 
