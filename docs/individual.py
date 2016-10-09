@@ -12,17 +12,36 @@ class IndividualGen(object):
         is measure on the similarity given a target image.
     '''
 
-    def __init__( self, size , height , width ):
+    def __init__( self, *args ):
 
-        # Randomly generate an individual
+        if len(args) == 4 :
 
-        self.size = size
-        self.height = height
-        self.width = width
+            # Randomly generate an individual taking as inputs: size , height , width ,  maxopacity
 
-        self.individual = []
-        for i in range(size):
-            self.individual.append(circle.CircleGen( height , width , 0.1 )) ;
+            self.size = args[0]
+            self.height = args[1]
+            self.width = args[2]
+
+            self.individual = []
+            for i in range(self.size):
+                self.individual.append(circle.Circle(args[1], args[2], args[3]))
+
+        elif len(args) == 1 :
+
+            # Implicity define an individual based on its genes encoding
+
+            file = open(args[0], 'r')
+
+            self.size = int(file.readline())
+            self.height = int(file.readline())
+            self.width = int(file.readline())
+
+            self.individual = []
+
+            for i in range(self.size):
+                self.individual.append(circle.Circle(file.readline()))
+
+            file.close()
 
 
     def generate ( self ):
@@ -62,7 +81,25 @@ class IndividualGen(object):
         # Pick a random polygon and randomize its properties
 
         index = rn.randint(0,self.size-1)
-        self.individual[index] = circle.CircleGen( self.height , self.width , 0.1 )
+        self.individual[index] = circle.Circle(self.height, self.width, 0.1)
+
+    def encode ( self , filename ):
+
+        # Store the current state of the individual in txt file
+
+        file = open(filename, "w")
+
+        file.write(str(self.size)+"\n")
+        file.write(str(self.height)+"\n")
+        file.write(str(self.width)+"\n")
+
+        for i in range ( self.size ):
+            file.write(self.individual[i].encodeGene())
+
+        file.close()
+
+
+
 
 
 

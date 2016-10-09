@@ -1,6 +1,3 @@
-import numpy as np
-import cv2
-import circle
 import individual
 import copy
 
@@ -24,22 +21,21 @@ class HillClimbing(object):
             -  Number of polygons to include in the solution
     '''
 
-    def __init__(self,iterations,target, size ):
+    def __init__( self, iterations, target, size ):
 
         # Set hyperparameters
 
         self.iterations = iterations
         self.target = target
         self.height , self.width = target.shape[:2]
-        self.length = size
+        self.size = size
 
 
-    def run ( self ):
+    def run( self ):
 
         # Run the hill climbing optimization and print
 
         # Start with a random initial solution
-
         solution = individual.IndividualGen( self.size , self.height , self.width )
         min_err = self.height * self. width
 
@@ -59,8 +55,9 @@ class HillClimbing(object):
                 solution = copy.deepcopy(temp)
 
             # Print results evolution
-            if i % 5000 == 0 :
+            if i % 5000  == 0 :
                 solution.write("Solution_Error_" + str(i) + "_" + str(min_err) + ".jpg")
+                solution.encode("Solution_Error_" + str(i) + "_" + str(min_err) + ".txt")
 
 
 

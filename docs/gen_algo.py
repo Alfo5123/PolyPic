@@ -1,7 +1,6 @@
 import numpy as np
-import cv2
 import individual
-import circle
+import copy
 
 class GeneticAlgorithm(object):
     ''''
@@ -54,23 +53,29 @@ class GeneticAlgorithm(object):
             self.pool.append(individual.IndividualGen(self.size,self.height,self.width));
 
 
-    def mutation ( self , mutproba ):
+    def mutation ( self , mutationproba ):
 
         # Mutatate some individuals from pool to allow diversity at exploration
 
         for i in range(self.population):
-            if np.random() < mutproba :
+            if np.random() < mutationproba :
                 self.pool[i].randomize()
 
-    def selection ( self ):
+    def selection ( self , numparents ):
 
         # Pick the best elements based on fitness
 
         scores = []
         for i in range(self.population):
-            scores[i] = ( self.pool[i].fitness(self.target) , i )
+            scores.append ( ( self.pool[i].fitness(self.target) , i ) )
 
-        scores.sort()
+        scores.sort(key=lambda x: x[0])
+
+        parents = []
+        for i in range(numparents):
+            parents.append ( copy.deepcopy(self.pool[scores[i][1]]) )
+
+        return parents
 
 
 
