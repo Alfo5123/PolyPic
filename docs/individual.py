@@ -10,7 +10,6 @@ class IndividualGen(object):
         An individual is defined as a set of polygons (genes)
         that generates an image. The fitness of the individual
         is measure on the similarity given a target image.
-
     '''
 
     def __init__( self, size , height , width ):
@@ -26,12 +25,11 @@ class IndividualGen(object):
             self.individual.append(circle.CircleGen( height , width , 0.1 )) ;
 
 
-    def write ( self ):
+    def generate ( self ):
 
-        # Create white image and fill it up with random polygons
+        # Create black background image and fill it up with random polygons
 
         img = np.zeros((self.height, self.width, 3), np.uint8)
-        img[:] = (255, 255, 255)
 
         overlay = img.copy()
         output = img.copy()
@@ -41,16 +39,19 @@ class IndividualGen(object):
             cv2.circle(overlay,info[0],  info[1], info[2], -1)
             cv2.addWeighted(overlay, info[3], output, 1 - info[3], 0, output)
 
-        cv2.imshow("Individual", output)
-        cv2.waitKey(0)
-
         return output
+
+    def write ( self , filename):
+
+        # Write image in file
+
+        cv2.imwrite(filename,self.generate())
 
     def fitness ( self , target ):
 
         # Calculate dissimilarity in pictures by MSE
 
-        current = self.write()
+        current = self.generate()
         err = np.sum((current.astype("float") - target.astype("float")) ** 2)
         err /= float(current.shape[0] * current.shape[1]* current.shape[2] )
         return err
@@ -60,8 +61,8 @@ class IndividualGen(object):
 
         # Pick a random polygon and randomize its properties
 
-        index = rn.randint(1,self.size)
-        self.individual[index] = circle.CircleGen( self.height , self.width , 0.1 ) ;
+        index = rn.randint(0,self.size-1)
+        self.individual[index] = circle.CircleGen( self.height , self.width , 0.1 )
 
 
 
