@@ -17,6 +17,11 @@ class HillClimbing(object):
            We will consider an initial pool of polygons and we keep adding more polygons as long
            as the total mean squared error is significantly reduced with respect to the target
            image we want to approximate.
+
+           INPUT:
+            -  Number of iterations for the algorithm
+            -  Target image that we try to approximate
+            -  Number of polygons to include in the solution
     '''
 
     def __init__(self,iterations,target, length ):
