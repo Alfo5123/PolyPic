@@ -24,12 +24,14 @@ class HillClimbing(object):
             -  Number of polygons to include in the solution
     '''
 
-    def __init__(self,iterations,target, length ):
+    def __init__(self,iterations,target, size ):
+
+        # Set hyperparameters
 
         self.iterations = iterations
         self.target = target
         self.height , self.width = target.shape[:2]
-        self.length = length
+        self.length = size
 
 
     def run ( self ):
@@ -37,7 +39,8 @@ class HillClimbing(object):
         # Run the hill climbing optimization and print
 
         # Start with a random initial solution
-        solution = individual.IndividualGen( self.length , self.height , self.width )
+
+        solution = individual.IndividualGen( self.size , self.height , self.width )
         min_err = self.height * self. width
 
         # Start iterative optimization to minimize error
@@ -46,7 +49,7 @@ class HillClimbing(object):
             # Store solution
             temp = copy.deepcopy(solution)
             # Modify one random polygon in solution
-            temp.mutation()
+            temp.randomize()
             # Compute dissimilarity
             err = temp.fitness(self.target)
 
@@ -56,7 +59,7 @@ class HillClimbing(object):
                 solution = copy.deepcopy(temp)
 
             # Print results evolution
-            if i % 50 == 0 :
+            if i % 5000 == 0 :
                 solution.write("Solution_Error_" + str(i) + "_" + str(min_err) + ".jpg")
 
 

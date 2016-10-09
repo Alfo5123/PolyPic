@@ -57,13 +57,12 @@ class IndividualGen(object):
         return err
 
 
-    def mutation ( self ):
+    def randomize (self):
 
         # Pick a random polygon and randomize its properties
 
         index = rn.randint(0,self.size-1)
         self.individual[index] = circle.CircleGen( self.height , self.width , 0.1 )
-
 
 
 
