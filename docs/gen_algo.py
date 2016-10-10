@@ -23,17 +23,15 @@ class GeneticAlgorithm(object):
                 - Widht of Image
                 - Target Image
 
-                -
-                	randomly initialize population(t)
-    determine fitness of population(t)
-    repeat
+                	randomly initialize population(t)determine fitness of population(t)
+                    repeat
 
-        select parents from population(t)
-        perform crossover on parents creating population(t+1)
-        perform mutation of population(t+1)
-        determine fitness of population(t+1)
+                        select parents from population(t)
+                        perform crossover on parents creating population(t+1)
+                        perform mutation of population(t+1)
+                        determine fitness of population(t+1)
 
-    until best individual is good enoug
+                    until best individual is good enoug
 
      '''
 
@@ -59,7 +57,7 @@ class GeneticAlgorithm(object):
 
         for i in range(self.population):
             if np.random() < mutationproba :
-                self.pool[i].randomize()
+                self.pool[i].mutate()
 
     def selection ( self , numparents ):
 

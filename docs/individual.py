@@ -17,7 +17,6 @@ class IndividualGen(object):
         if len(args) == 4 :
 
             # Randomly generate an individual taking as inputs: size , height , width ,  maxopacity
-
             self.size = args[0]
             self.height = args[1]
             self.width = args[2]
@@ -26,10 +25,9 @@ class IndividualGen(object):
             for i in range(self.size):
                 self.individual.append(circle.Circle(args[1], args[2], args[3]))
 
-        elif len(args) == 1 :
+        else:  # len(args) == 1 :
 
             # Implicity define an individual based on its genes encoding
-
             file = open(args[0], 'r')
 
             self.size = int(file.readline())
@@ -39,12 +37,12 @@ class IndividualGen(object):
             self.individual = []
 
             for i in range(self.size):
-                self.individual.append(circle.Circle(file.readline()))
+                self.individual.append(circle.Circle(self.height, self.width, 0.1, file.readline()))
 
             file.close()
 
 
-    def generate ( self ):
+    def generate( self ):
 
         # Create black background image and fill it up with random polygons
 
@@ -60,13 +58,14 @@ class IndividualGen(object):
 
         return output
 
-    def write ( self , filename):
+    def write( self , filename):
 
         # Write image in file
 
         cv2.imwrite(filename,self.generate())
 
-    def fitness ( self , target ):
+
+    def fitness( self , target ):
 
         # Calculate dissimilarity in pictures by MSE
 
@@ -76,14 +75,17 @@ class IndividualGen(object):
         return err
 
 
-    def randomize (self):
+    def mutate( self , degree ):
 
-        # Pick a random polygon and randomize its properties
+        # Pick a random polygons and randomize its properties
 
-        index = rn.randint(0,self.size-1)
-        self.individual[index] = circle.Circle(self.height, self.width, 0.1)
+        for i in range(self.size):
+            if rn.random() < 0.33 :
+                self.individual[i] = circle.Circle(self.height , self.width , 0.1 )
+                # self.individual[i].randomize(0.5)
 
-    def encode ( self , filename ):
+
+    def encode( self , filename ):
 
         # Store the current state of the individual in txt file
 
@@ -97,15 +99,3 @@ class IndividualGen(object):
             file.write(self.individual[i].encodeGene())
 
         file.close()
-
-
-
-
-
-
-
-
-
-
-
-
