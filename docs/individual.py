@@ -77,12 +77,10 @@ class IndividualGen(object):
 
     def mutate( self , degree ):
 
-        # Pick a random polygons and randomize its properties
+        # Pick a random polygon and randomize its properties
 
-        for i in range(self.size):
-            if rn.random() < 0.33 :
-                self.individual[i] = circle.Circle(self.height , self.width , 0.1 )
-                # self.individual[i].randomize(0.5)
+        index = rn.randint(0,self.size-1)
+        self.individual[index] = circle.Circle(self.height,self.width, 0.1 )
 
 
     def encode( self , filename ):

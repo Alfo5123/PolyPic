@@ -23,16 +23,6 @@ class GeneticAlgorithm(object):
                 - Widht of Image
                 - Target Image
 
-                	randomly initialize population(t)determine fitness of population(t)
-                    repeat
-
-                        select parents from population(t)
-                        perform crossover on parents creating population(t+1)
-                        perform mutation of population(t+1)
-                        determine fitness of population(t+1)
-
-                    until best individual is good enoug
-
      '''
 
     def __init__(self, generations, population, size, height, width , target):
@@ -74,6 +64,15 @@ class GeneticAlgorithm(object):
             parents.append ( copy.deepcopy(self.pool[scores[i][1]]) )
 
         return parents
+
+
+    def run ( self ):
+
+        # Performs a generation update
+
+        next_gen = []
+
+
 
 
 

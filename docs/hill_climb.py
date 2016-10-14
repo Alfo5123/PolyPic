@@ -37,13 +37,15 @@ class HillClimbing(object):
         if len(args) == 0:
             # Start with a random initial solution
             solution = individual.IndividualGen(self.size, self.height, self.width , 0.1 )
+            min_err = self.height * self.width
+
         else:
             # Start with a precomputed initial solution
             solution = individual.IndividualGen(args[0])
+            data = args[0].split("_")
+            min_err = float(data[3][:-4])
 
         # Iterative optimization to minimize error
-        min_err = self.height * self. width
-
         for i in range(self.iterations):
 
             # Store solution

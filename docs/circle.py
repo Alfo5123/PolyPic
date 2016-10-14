@@ -1,4 +1,5 @@
 import random as rn
+import numpy as np
 
 class Circle(object):
     ''''
@@ -54,45 +55,24 @@ class Circle(object):
                                                        self.radius,self.color[0],
                                                        self.color[1], self.color[2],
                                                        self.alpha))
-    def randomize( self , degree ):
+    def randomize( self ):
 
         # Produces  variations in gene parameters to a certain degree specified
 
-        var_center_x = int( degree * self.center[0] )
-        var_center_y = int( degree * self.center[1] )
-        var_radius = int(degree * self.radius )
+        new_center_x = self.center[0] + np.random.normal(0,5)
+        new_center_y = self.center[1] + np.random.normal(0,5)
+        new_radius = self.radius + np.random.normal(0,10)
 
-        var_color_r = int( degree * self.color[0] )
-        var_color_g = int(degree * self.color[1] )
-        var_color_b = int(degree * self.color[2] )
-        var_alpha = degree* self.alpha
-
-        new_center_x = rn.randint( self.center[0] - var_center_x ,
-                                   self.center[0] + var_center_x)
-
-        new_center_y = rn.randint(self.center[1] - var_center_y,
-                                  self.center[1] + var_center_y)
-
-        new_radius = rn.randint(self.radius - var_radius,
-                                self.radius + var_radius)
-
-        new_color_r = rn.randint(self.color[0] - var_color_r,
-                                 self.color[0] + var_color_r)
-
-        new_color_g = rn.randint(self.color[1] - var_color_g,
-                                 self.color[1] + var_color_g)
-
-        new_color_b = rn.randint(self.color[2] - var_color_b,
-                                 self.color[2] + var_color_b)
-
-        new_alpha = rn.uniform(self.alpha - var_alpha,
-                               self.alpha + var_alpha)
+        new_color_r = self.color[0] + np.random.normal(0,5)
+        new_color_g = self.color[1] + np.random.normal(0, 5)
+        new_color_b = self.color[2] + np.random.normal(0, 5)
+        new_alpha = self.alpha + np.random.normal(0, 5)
 
         # Update randomized values
         self.center = ( max ( 0 , min ( self.width , new_center_x ) ) ,
                         max ( 0 , min ( self.height, new_center_y ) ) )
 
-        self.radius = max ( 1 , min ( 20, new_radius ) )
+        self.radius = max ( 1 , min ( 40, new_radius ) )
 
         self.color = ( max ( 0 , min ( 255 , new_color_r ) ) ,
                        max ( 0 , min ( 255 , new_color_g) ) ,

@@ -9,7 +9,7 @@ height, width = target.shape[:2]
 
 #Run Hill Climbing Algorithm
 hc = hill_climb.HillClimbing( 100000 , target , 60 )
-hc.run()
+hc.run("Solution_Error_95000_735.151582599.txt")
 
 
 #Run Genetic Algorithm
