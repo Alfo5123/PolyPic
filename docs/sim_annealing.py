@@ -50,7 +50,7 @@ class Simulated_Annealing(object):
 
         # Iterative optimization to minimize error
 
-        tempearture = 1000000.0
+        temperature = 100.0
 
         for i in range(self.iterations):
 
@@ -67,15 +67,15 @@ class Simulated_Annealing(object):
                 min_err = err
                 solution = copy.deepcopy(temp)
 
-            elif np.exp((min_err-err)/temperature) < np.random.random():
+            elif np.exp((min_err-err)/temperature) > np.random.random():
 
                 min_err = err
                 solution = copy.deepcopy(temp)
 
             # Print results evolution
-            if i % 5000  == 0 :
-                solution.write("Solution_Error_" + str(i) + "_" + str(min_err) + ".jpg")
-                solution.encode("Solution_Error_" + str(i) + "_" + str(min_err) + ".txt")
+            if i % 500  == 0 :
+                solution.write("SolutionSA_Error_" + str(i) + "_" + str(min_err) + ".jpg")
+                solution.encode("SolutionSA_Error_" + str(i) + "_" + str(min_err) + ".txt")
 
             # Cooling schedule
-            temperature = 0.99 * temperature ;
+            temperature *= 0.99

@@ -51,7 +51,7 @@ class HillClimbing(object):
             # Store solution
             temp = copy.deepcopy(solution)
             # Modify one random polygon in solution
-            temp.mutate(0.5)
+            temp.mutate()
             # Compute dissimilarity
             err = temp.fitness(self.target)
 
@@ -62,5 +62,5 @@ class HillClimbing(object):
 
             # Print results evolution
             if i % 5000  == 0 :
-                solution.write("Solution_Error_" + str(i) + "_" + str(min_err) + ".jpg")
-                solution.encode("Solution_Error_" + str(i) + "_" + str(min_err) + ".txt")
+                solution.write("SolutionHC_Error_" + str(i) + "_" + str(min_err) + ".jpg")
+                solution.encode("SolutionHC_Error_" + str(i) + "_" + str(min_err) + ".txt")

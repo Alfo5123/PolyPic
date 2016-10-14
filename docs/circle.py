@@ -66,7 +66,7 @@ class Circle(object):
         new_color_r = self.color[0] + np.random.normal(0,5)
         new_color_g = self.color[1] + np.random.normal(0, 5)
         new_color_b = self.color[2] + np.random.normal(0, 5)
-        new_alpha = self.alpha + np.random.normal(0, 5)
+        new_alpha = self.alpha + np.random.normal(0, 0.5)
 
         # Update randomized values
         self.center = ( max ( 0 , min ( self.width , new_center_x ) ) ,
