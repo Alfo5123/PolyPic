@@ -55,44 +55,58 @@ class GeneticAlgorithm(object):
             scores.sort(key=lambda x: x[0])
 
             # Report best individual per generation
-            if gen % 500 == 0:
+            if gen % 2 == 0:
                 scores[0][1].write("SolutionGA_Error_" + str(gen) + "_" + str(scores[0][0]) + ".jpg")
 
             # Create a new generation
             next_gen = []
 
-            # Keep Top K Ranked individuals for next generation
+            # Keep Top K Ranked individuals for next generation ( Ellitism )
             for i in range(best_k):
                 next_gen.append(copy.deepcopy(scores[i][1]))
 
-            parent1 = np.random.choice(scores[:][1], scores[:][0])
-            parent2 = np.random.choice(scores[:][1], scores[:][0])
-
-            print parent1
-            print parent2
-
-''''
             # Apply genetic operations to produce the next generation
             while len(next_gen) < self.population:
 
-                # Selection
-                parent1 = np.choice(scores[:][1],scores[:][0])
-                parent2 = np.choice(scores[:][1], scores[:][0])
+                # Selection based on Fitness ( Roulette Wheel Sampling )
+
+                order = np.random.permutation(self.population)
+                rank = np.random.uniform(scores[0][0], scores[self.population-1][0])
+                parent1_index = -1
+                for i in range(self.population):
+                    if ( scores[order[i]][0] <= rank ):
+                        parent1_index = order[i]
+                        break
+
+                parent1 = copy.deepcopy( scores[parent1_index][1] )
+
+                order = np.random.permutation(self.population)
+                rank = np.random.uniform(scores[0][0], scores[self.population - 1][0])
+                parent2_index = -1
+                for i in range(self.population):
+                    if (scores[order[i]][0] <= rank):
+                        parent2_index = order[i]
+                        break
+
+                parent2 = copy.deepcopy(scores[parent2_index][1])
 
                 # Crossover
-                child1 =
-                child2 =
+                child1 = parent1
+                child2 = parent2
+
+                index = np.random.randint(0,self.size-1)
+                child1.genes[index:] = scores[parent2_index][1].genes[index:]
+                child2.genes[:index] = scores[parent1_index][1].genes[:index]
+
+                child1.write("child1.jpg")
+                child2.write("child2.jpg")
 
                 # Mutation
-                if ( np.random.random() < mutation_rate ): child1.mutate()
-                if ( np.random.random() < mutation_rate ): child2.mutate()
+                if np.random.random() < mutation_rate: child1.mutate()
+                if np.random.random() < mutation_rate: child2.mutate()
 
                 next_gen.append(child1)
                 next_gen.append(child2)
 
-'''
-
-
-
-
-
+            # Update new generation
+            self.cur_gen = copy.deepcopy(next_gen)

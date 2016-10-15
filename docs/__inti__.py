@@ -17,5 +17,5 @@ height, width = target.shape[:2]
 
 
 #Run Genetic Algorithm
-ga = gen_algo.GeneticAlgorithm(1,200,40,height,width,target)
-ga.run(10,0.1)
+ga = gen_algo.GeneticAlgorithm(1,200,60,height,width,target)
+ga.run(20,0.35)

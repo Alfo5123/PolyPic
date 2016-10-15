@@ -17,27 +17,28 @@ class IndividualGen(object):
         if len(args) == 4 :
 
             # Randomly generate an individual taking as inputs: size , height , width ,  maxopacity
+
             self.size = args[0]
             self.height = args[1]
             self.width = args[2]
 
-            self.individual = []
+            self.genes = []
             for i in range(self.size):
-                self.individual.append(circle.Circle(args[1], args[2], args[3]))
+                self.genes.append(circle.Circle(args[1], args[2], args[3]))
 
         else:  # len(args) == 1 :
 
             # Implicity define an individual based on its genes encoding
+
             file = open(args[0], 'r')
 
             self.size = int(file.readline())
             self.height = int(file.readline())
             self.width = int(file.readline())
 
-            self.individual = []
-
+            self.genes = []
             for i in range(self.size):
-                self.individual.append(circle.Circle(self.height, self.width, 0.1, file.readline()))
+                self.genes.append(circle.Circle(self.height, self.width, 0.1, file.readline()))
 
             file.close()
 
@@ -52,7 +53,7 @@ class IndividualGen(object):
         output = img.copy()
 
         for i in range(self.size):
-            info = self.individual[i].getInfo()
+            info = self.genes[i].getInfo()
             cv2.circle(overlay,info[0],  info[1], info[2], -1)
             cv2.addWeighted(overlay, info[3], output, 1 - info[3], 0, output)
 
@@ -80,7 +81,7 @@ class IndividualGen(object):
         # Pick a random subset of polygons and randomize its properties
 
         index = rn.randint(0,self.size-1)
-        self.individual[index].randomize()
+        self.genes[index].randomize()
 
 
     def encode( self , filename ):
@@ -94,6 +95,6 @@ class IndividualGen(object):
         file.write(str(self.width)+"\n")
 
         for i in range ( self.size ):
-            file.write(self.individual[i].encodeGene())
+            file.write(self.genes[i].encodeGene())
 
         file.close()
