@@ -95,11 +95,8 @@ class GeneticAlgorithm(object):
                 child2 = parent2
 
                 index = np.random.randint(0,self.size-1)
-                child1.genes[index:] = scores[parent2_index][1].genes[index:]
+                child1.genes[:index] = scores[parent2_index][1].genes[:index]
                 child2.genes[:index] = scores[parent1_index][1].genes[:index]
-
-                child1.write("child1.jpg")
-                child2.write("child2.jpg")
 
                 # Mutation
                 if np.random.random() < mutation_rate: child1.mutate()
