@@ -18,9 +18,9 @@ class GeneticAlgorithm(object):
             INPUT:
                 - Number of generations
                 - Number of solutions in initial population
-                - Number of polygons in soltion
+                - Number of polygons in solution
                 - Height of Image
-                - Widht of Image
+                - Width of Image
                 - Target Image
 
      '''
@@ -36,44 +36,61 @@ class GeneticAlgorithm(object):
         self.width = width
         self.target = target
 
-        self.pool = []
+        self.cur_gen = []
         for i in range(population):
-            self.pool.append(individual.IndividualGen(self.size,self.height,self.width));
+            self.cur_gen.append(individual.IndividualGen(self.size,self.height,self.width,0.1))
 
 
-    def mutation ( self , mutationproba ):
+    def run ( self , best_k , mutation_rate ):
 
-        # Mutatate some individuals from pool to allow diversity at exploration
+        # Performs generations update
 
-        for i in range(self.population):
-            if np.random() < mutationproba :
-                self.pool[i].mutate()
+        for gen in range(self.generations):
 
-    def selection ( self , numparents ):
+            # Sort individuals by Fitness
+            scores = []
+            for i in range(self.population):
+                scores.append((self.cur_gen[i].fitness(self.target), self.cur_gen[i]))
 
-        # Pick the best elements based on fitness
+            scores.sort(key=lambda x: x[0])
 
-        scores = []
-        for i in range(self.population):
-            scores.append ( ( self.pool[i].fitness(self.target) , i ) )
+            # Report best individual per generation
+            if gen % 500 == 0:
+                scores[0][1].write("SolutionGA_Error_" + str(gen) + "_" + str(scores[0][0]) + ".jpg")
 
-        scores.sort(key=lambda x: x[0])
+            # Create a new generation
+            next_gen = []
 
-        parents = []
-        for i in range(numparents):
-            parents.append ( copy.deepcopy(self.pool[scores[i][1]]) )
+            # Keep Top K Ranked individuals for next generation
+            for i in range(best_k):
+                next_gen.append(copy.deepcopy(scores[i][1]))
 
-        return parents
+            parent1 = np.random.choice(scores[:][1], scores[:][0])
+            parent2 = np.random.choice(scores[:][1], scores[:][0])
 
+            print parent1
+            print parent2
 
-    def run ( self ):
+''''
+            # Apply genetic operations to produce the next generation
+            while len(next_gen) < self.population:
 
-        # Performs a generation update
+                # Selection
+                parent1 = np.choice(scores[:][1],scores[:][0])
+                parent2 = np.choice(scores[:][1], scores[:][0])
 
-        next_gen = []
+                # Crossover
+                child1 =
+                child2 =
 
+                # Mutation
+                if ( np.random.random() < mutation_rate ): child1.mutate()
+                if ( np.random.random() < mutation_rate ): child2.mutate()
 
+                next_gen.append(child1)
+                next_gen.append(child2)
 
+'''
 
 
 

@@ -1,5 +1,6 @@
 import hill_climb
 import sim_annealing
+import gen_algo
 import cv2
 
 # Load the image
@@ -11,13 +12,10 @@ height, width = target.shape[:2]
 #hc.run("Solution_Error_95000_735.151582599.txt")
 
 #Run Simulated Annealing Algorithm
-sa = sim_annealing.Simulated_Annealing(10000,target,60)
-sa.run()
+#sa = sim_annealing.Simulated_Annealing(10001,target,60)
+#sa.run()
 
 
 #Run Genetic Algorithm
-#ga = gen_algo.GeneticAlgorithm(100,200,40,height,width,target)
-#p = ga.selection(30)
-
-#ans = individual.IndividualGen("Solution_Error_0_9013.73399178.txt")
-#ans.write("ans.jpg")
+ga = gen_algo.GeneticAlgorithm(1,200,40,height,width,target)
+ga.run(10,0.1)

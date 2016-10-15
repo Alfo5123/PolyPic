@@ -59,20 +59,20 @@ class Circle(object):
 
         # Produces  variations in gene parameters to a certain degree specified
 
-        new_center_x = self.center[0] + np.random.normal(0,5)
-        new_center_y = self.center[1] + np.random.normal(0,5)
-        new_radius = self.radius + np.random.normal(0,10)
+        new_center_x = int ( self.center[0] + np.random.normal(0,5) )
+        new_center_y = int ( self.center[1] + np.random.normal(0,5) )
+        new_radius = int ( self.radius + np.random.normal(0,10) )
 
-        new_color_r = self.color[0] + np.random.normal(0,5)
-        new_color_g = self.color[1] + np.random.normal(0, 5)
-        new_color_b = self.color[2] + np.random.normal(0, 5)
+        new_color_r = int ( self.color[0] + np.random.normal(0,5) )
+        new_color_g = int ( self.color[1] + np.random.normal(0, 5) )
+        new_color_b = int ( self.color[2] + np.random.normal(0, 5) )
         new_alpha = self.alpha + np.random.normal(0, 0.5)
 
         # Update randomized values
         self.center = ( max ( 0 , min ( self.width , new_center_x ) ) ,
                         max ( 0 , min ( self.height, new_center_y ) ) )
 
-        self.radius = max ( 1 , min ( 40, new_radius ) )
+        self.radius = max ( 1 , min ( max( self.width / 3 , self.height  / 3 ), new_radius ) )
 
         self.color = ( max ( 0 , min ( 255 , new_color_r ) ) ,
                        max ( 0 , min ( 255 , new_color_g) ) ,
