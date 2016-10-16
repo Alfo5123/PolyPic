@@ -4,18 +4,18 @@ import gen_algo
 import cv2
 
 # Load the image
-target = cv2.imread("/home/alfredo/PycharmProjects/PolyPic/examples/IM_03.jpg")
+target = cv2.imread("/home/alfredo/PycharmProjects/PolyPic/examples/IM_05.jpg")
 height, width = target.shape[:2]
 
 #Run Hill Climbing Algorithm
-#hc = hill_climb.HillClimbing( 100000 , target , 60 )
-#hc.run("Solution_Error_95000_735.151582599.txt")
+#hc = hill_climb.HillClimbing( 100001 , target , 60 )
+#hc.run("SolutionSA_Error_100000_592.60820744.txt")
 
 #Run Simulated Annealing Algorithm
-#sa = sim_annealing.Simulated_Annealing(10001,target,60)
-#sa.run()
+sa = sim_annealing.Simulated_Annealing(100001,target,100)
+sa.run()
 
 
 #Run Genetic Algorithm
-ga = gen_algo.GeneticAlgorithm(1,200,60,height,width,target)
-ga.run(20,0.35)
+#ga = gen_algo.GeneticAlgorithm(1001,200,60,height,width,target)
+#ga.run(20,0.25)

@@ -50,7 +50,7 @@ class Simulated_Annealing(object):
 
         # Iterative optimization to minimize error
 
-        temperature = 500.0
+        temperature = 100.0
 
         for i in range(self.iterations):
 
@@ -73,7 +73,7 @@ class Simulated_Annealing(object):
                 solution = copy.deepcopy(temp)
 
             # Print results evolution
-            if i % 500 == 0 :
+            if i % 5000 == 0 :
                 solution.write("SolutionSA_Error_" + str(i) + "_" + str(min_err) + ".jpg")
                 solution.encode("SolutionSA_Error_" + str(i) + "_" + str(min_err) + ".txt")
 
