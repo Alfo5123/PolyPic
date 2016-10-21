@@ -17,5 +17,6 @@ sa.run()
 
 
 #Run Genetic Algorithm
-#ga = gen_algo.GeneticAlgorithm(1001,200,60,height,width,target)
+#ga = gen_algo.GeneticAlgorithm
+
 #ga.run(20,0.25)
