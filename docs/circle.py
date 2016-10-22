@@ -9,32 +9,32 @@ class Circle(object):
        background color and alpha component.
     '''
 
-    def __init__( self, *arg ):
+    def __init__(self, *args):
 
         # Define parameters for random circle generation
 
-        if len(arg) == 3 :
+        if len(args) == 3 :
 
             #  Explicit definition with parameters: height , width , max_opacity
 
-            self.height = arg[0]
-            self.width = arg[1]
-            self.maxopacity = arg[2]
+            self.height = args[0]
+            self.width = args[1]
+            self.maxopacity = args[2]
 
             self.center = (rn.randint(0, self.width), rn.randint(0, self.height))
             self.radius = rn.randint(1, max( self.width / 3 , self.height  / 3 ))
             self.color = (rn.randint(0, 255), rn.randint(0, 255), rn.randint(0, 255))
             self.alpha = self.maxopacity * rn.random()
 
-        elif len(arg) == 4 :
+        elif len(args) == 4 :
 
             # Implicit definition by taking: height , width , max_opacity, decoding gene string
 
-            self.height = arg[0]
-            self.width = arg[1]
-            self.maxopacity = arg[2]
+            self.height = args[0]
+            self.width = args[1]
+            self.maxopacity = args[2]
 
-            info = arg[3].split('-')
+            info = args[3].split('-')
             self.center = (int(info[0]), int(info[1]))
             self.radius = int(info[2])
             self.color = (int(info[3]), int(info[4]), int(info[5]))
@@ -72,7 +72,7 @@ class Circle(object):
         self.center = ( max ( 0 , min ( self.width , new_center_x ) ) ,
                         max ( 0 , min ( self.height, new_center_y ) ) )
 
-        self.radius = max ( 1 , min ( max( self.width / 3 , self.height  / 3 ), new_radius ) )
+        self.radius = max ( 1 , min ( max( self.width/3 , self.height/3 ), new_radius ) )
 
         self.color = ( max ( 0 , min ( 255 , new_color_r ) ) ,
                        max ( 0 , min ( 255 , new_color_g) ) ,
