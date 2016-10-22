@@ -12,7 +12,7 @@ class Ellipse ( object ):
 
     def __init__( self , *args ):
 
-        # Define parameters for random circle generation
+        # Define parameters for ellipse generation
 
         if len ( args ) == 3 :
 

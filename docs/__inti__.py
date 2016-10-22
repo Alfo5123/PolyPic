@@ -12,7 +12,7 @@ height, width = target.shape[:2]
 #hc.run("SolutionSA_Error_100000_592.60820744.txt")
 
 #Run Simulated Annealing Algorithm
-sa = sim_annealing.Simulated_Annealing(100001,target,60)
+sa = sim_annealing.Simulated_Annealing(100001,target,60,1)
 sa.run()
 
 

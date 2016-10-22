@@ -11,7 +11,7 @@ class Circle(object):
 
     def __init__(self, *args):
 
-        # Define parameters for random circle generation
+        # Define parameters for circle generation
 
         if len(args) == 3 :
 

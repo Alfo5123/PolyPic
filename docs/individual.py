@@ -2,6 +2,7 @@ import numpy as np
 import random as rn
 import circle
 import ellipse
+import triangle
 import cv2
 
 class IndividualGen(object):
@@ -25,11 +26,20 @@ class IndividualGen(object):
             self.type = args[3]
 
             self.genes = []
+
             for i in range(self.size):
+
                 if self.type == 1:
+
                     self.genes.append(circle.Circle(args[1], args[2], args[4]))
+
                 elif self.type == 2:
+
                     self.genes.append(ellipse.Ellipse(args[1], args[2], args[4]))
+
+                elif self.type == 3:
+
+                    self.genes.append(triangle.Triangle(args[1],args[2],args[4]))
 
         else:  # len(args) == 1 :
 
@@ -43,11 +53,20 @@ class IndividualGen(object):
             self.type = int(file.readline())
 
             self.genes = []
+
             for i in range(self.size):
+
                 if self.type == 1:
+
                     self.genes.append(circle.Circle(self.height, self.width, 0.1, file.readline()))
+
                 elif self.type == 2:
+
                     self.genes.append(ellipse.Ellipse(self.height, self.width, 0.1, file.readline()))
+
+                elif self.type == 3:
+
+                    self.genes.append(triangle.Triangle(self.height, self.width, 0.1, file.readline()))
 
             file.close()
 
@@ -74,6 +93,11 @@ class IndividualGen(object):
 
                 cv2.ellipse(overlay,info[0],info[1],info[2],0,360,info[3],-1)
                 cv2.addWeighted(overlay, info[4], output, 1 - info[4], 0, output)
+
+            elif self.type == 3:
+
+                cv2.fillConvexPoly(overlay,info[0],info[1],-1)
+                cv2.addWeighted(overlay, info[2], output, 1 - info[2], 0, output)
 
         return output
 
