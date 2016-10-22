@@ -57,10 +57,10 @@ class Ellipse ( object ):
         # Returns a string encoding the gene information
 
         return ("{0}-{1}-{2}-{3}-{4}-{5}-{6}-{7}-{8}\n".format(self.center[0], self.center[1],
-                                                       self.axes[0], self.axes[1] ,
-                                                       self.rotation , self.color[0],
-                                                       self.color[1], self.color[2],
-                                                       self.alpha))
+                                                               self.axes[0], self.axes[1],
+                                                               self.rotation , self.color[0],
+                                                               self.color[1], self.color[2],
+                                                               self.alpha))
 
     def randomize( self ):
 

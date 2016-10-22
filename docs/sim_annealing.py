@@ -39,7 +39,7 @@ class Simulated_Annealing(object):
 
         if len(args) == 0:
             # Start with a random initial solution
-            solution = individual.IndividualGen(self.size, self.height, self.width , 0.1 )
+            solution = individual.IndividualGen(self.size, self.height, self.width , 0 ,  0.1 )
             min_err = self.height * self.width
 
         else:

@@ -1,6 +1,7 @@
 import numpy as np
 import random as rn
 import circle
+import ellipse
 import cv2
 
 class IndividualGen(object):
@@ -14,17 +15,21 @@ class IndividualGen(object):
 
     def __init__( self, *args ):
 
-        if len(args) == 4 :
+        if len(args) == 5 :
 
-            # Randomly generate an individual taking as inputs: size , height , width ,  maxopacity
+            # Randomly generate an individual taking as inputs: size , height , width ,  type , maxopacity
 
             self.size = args[0]
             self.height = args[1]
             self.width = args[2]
+            self.type = args[3]
 
             self.genes = []
             for i in range(self.size):
-                self.genes.append(circle.Circle(args[1], args[2], args[3]))
+                if self.type == 1:
+                    self.genes.append(circle.Circle(args[1], args[2], args[4]))
+                elif self.type == 2:
+                    self.genes.append(ellipse.Ellipse(args[1], args[2], args[4]))
 
         else:  # len(args) == 1 :
 
@@ -35,10 +40,14 @@ class IndividualGen(object):
             self.size = int(file.readline())
             self.height = int(file.readline())
             self.width = int(file.readline())
+            self.type = int(file.readline())
 
             self.genes = []
             for i in range(self.size):
-                self.genes.append(circle.Circle(self.height, self.width, 0.1, file.readline()))
+                if self.type == 1:
+                    self.genes.append(circle.Circle(self.height, self.width, 0.1, file.readline()))
+                elif self.type == 2:
+                    self.genes.append(ellipse.Ellipse(self.height, self.width, 0.1, file.readline()))
 
             file.close()
 
@@ -93,6 +102,7 @@ class IndividualGen(object):
         file.write(str(self.size)+"\n")
         file.write(str(self.height)+"\n")
         file.write(str(self.width)+"\n")
+        file.write(str(self.type)+"\n")
 
         for i in range ( self.size ):
             file.write(self.genes[i].encodeGene())
