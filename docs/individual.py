@@ -96,7 +96,7 @@ class IndividualGen(object):
 
             elif self.type == 3:
 
-                cv2.fillConvexPoly(overlay,info[0],info[1],-1)
+                cv2.fillConvexPoly(overlay,np.asarray(info[0]), info[1])
                 cv2.addWeighted(overlay, info[2], output, 1 - info[2], 0, output)
 
         return output
