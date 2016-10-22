@@ -38,7 +38,7 @@ class GeneticAlgorithm(object):
 
         self.cur_gen = []
         for i in range(population):
-            self.cur_gen.append(individual.IndividualGen(self.size,self.height,self.width, 0, 0.1))
+            self.cur_gen.append(individual.IndividualGen(self.size,self.height,self.width, 1, 0.1))
 
 
     def run ( self , best_k , mutation_rate ):

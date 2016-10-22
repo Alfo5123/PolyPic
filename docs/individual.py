@@ -62,9 +62,15 @@ class IndividualGen(object):
         output = img.copy()
 
         for i in range(self.size):
+
             info = self.genes[i].getInfo()
-            cv2.circle(overlay,info[0],  info[1], info[2], -1)
-            cv2.addWeighted(overlay, info[3], output, 1 - info[3], 0, output)
+
+            if self.type == 1:
+                cv2.circle(overlay,info[0],  info[1], info[2], -1)
+                cv2.addWeighted(overlay, info[3], output, 1 - info[3], 0, output)
+            elif self.type == 2:
+                cv2.ellipse(overlay,info[0],info[1],info[2],0,360,info[3],-1)
+                cv2.addWeighted(overlay, info[4], output, 1 - info[4], 0, output)
 
         return output
 

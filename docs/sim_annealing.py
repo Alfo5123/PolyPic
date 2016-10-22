@@ -35,11 +35,11 @@ class Simulated_Annealing(object):
 
     def run( self , *args ):
 
-        # Run the simmulated annealing optimization and print
+        # Run the simulated annealing optimization and print
 
         if len(args) == 0:
             # Start with a random initial solution
-            solution = individual.IndividualGen(self.size, self.height, self.width , 0 ,  0.1 )
+            solution = individual.IndividualGen(self.size, self.height, self.width, 1,  0.1 )
             min_err = self.height * self.width
 
         else:
