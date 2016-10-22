@@ -21,9 +21,14 @@ class Simulated_Annealing(object):
         Typically this step is repeated until the system reaches a state that is good enough for the
         application, or until a given computation budget has been exhausted.
 
+        INPUT:
+                - Number of iterations
+                - Target Image
+                - Number of polygons in solution
+                - Type of Polygon
     '''
 
-    def __init__(self, iterations, target, size):
+    def __init__(self, iterations, target, size , type ):
 
         # Set hyperparameters
 
@@ -31,6 +36,7 @@ class Simulated_Annealing(object):
         self.target = target
         self.height, self.width = target.shape[:2]
         self.size = size
+        self.type = type
 
 
     def run( self , *args ):
@@ -39,7 +45,7 @@ class Simulated_Annealing(object):
 
         if len(args) == 0:
             # Start with a random initial solution
-            solution = individual.IndividualGen(self.size, self.height, self.width, 1,  0.1 )
+            solution = individual.IndividualGen(self.size, self.height, self.width, self.type ,  0.1 )
             min_err = self.height * self.width
 
         else:

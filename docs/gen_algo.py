@@ -22,6 +22,7 @@ class GeneticAlgorithm(object):
                 - Height of Image
                 - Width of Image
                 - Target Image
+                - Type of Polygon
 
      '''
 
@@ -35,10 +36,11 @@ class GeneticAlgorithm(object):
         self.height = height
         self.width = width
         self.target = target
+        self.type = type
 
         self.cur_gen = []
         for i in range(population):
-            self.cur_gen.append(individual.IndividualGen(self.size,self.height,self.width, 1, 0.1))
+            self.cur_gen.append(individual.IndividualGen(self.size,self.height,self.width, self.type, 0.1))
 
 
     def run ( self , best_k , mutation_rate ):

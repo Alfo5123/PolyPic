@@ -19,9 +19,10 @@ class HillClimbing(object):
             -  Number of iterations for the algorithm
             -  Target image that we try to approximate
             -  Number of polygons to include in the solution
+            -  Type of polygon in solution
     '''
 
-    def __init__( self, iterations, target, size ):
+    def __init__( self, iterations, target, size , type ):
 
         # Set hyperparameters
 
@@ -29,6 +30,7 @@ class HillClimbing(object):
         self.target = target
         self.height , self.width = target.shape[:2]
         self.size = size
+        self.type = type
 
     def run( self , *args ):
 
@@ -36,7 +38,7 @@ class HillClimbing(object):
 
         if len(args) == 0:
             # Start with a random initial solution
-            solution = individual.IndividualGen(self.size, self.height, self.width, 1 , 0.1 )
+            solution = individual.IndividualGen(self.size, self.height, self.width, self.type , 0.1 )
             min_err = self.height * self.width
 
         else:
