@@ -2,11 +2,11 @@ import random as rn
 import numpy as np
 
 
-class Triangle(object):
+class Quadrilateral(object):
     '''
-        Triangle Class
+        Quadrilaterl Class
 
-        A triangle is defined by its vertex coordinates,
+        A quadrilateral is defined by its vertex coordinates,
         background color and alpha component.
     '''
 
@@ -24,6 +24,7 @@ class Triangle(object):
 
             self.points = ((rn.randint(0, self.width), rn.randint(0, self.height)),
                            (rn.randint(0, self.width), rn.randint(0, self.height)),
+                           (rn.randint(0, self.width), rn.randint(0, self.height)),
                            (rn.randint(0, self.width), rn.randint(0, self.height)))
 
             self.color = (rn.randint(0, 255), rn.randint(0, 255), rn.randint(0, 255))
@@ -40,10 +41,11 @@ class Triangle(object):
             info = args[3].split('-')
             self.points = ((int(info[0]), int(info[1])),
                            (int(info[2]), int(info[3])),
-                           (int(info[4]), int(info[5])))
+                           (int(info[4]), int(info[5])),
+                           (int(info[6]), int(info[7])))
 
-            self.color = (int(info[6]), int(info[7]), int(info[8]))
-            self.alpha = float(info[9])
+            self.color = (int(info[8]), int(info[9]), int(info[10]))
+            self.alpha = float(info[11])
 
     def getInfo(self):
 
@@ -55,9 +57,10 @@ class Triangle(object):
 
         # Returns a string encoding the gene information
 
-        return ("{0}-{1}-{2}-{3}-{4}-{5}-{6}-{7}-{8}-{9}\n".format(self.points[0][0], self.points[0][1],
+        return ("{0}-{1}-{2}-{3}-{4}-{5}-{6}-{7}-{8}-{9}-{10}-{11}\n".format(self.points[0][0], self.points[0][1],
                                                                    self.points[1][0], self.points[1][1],
                                                                    self.points[2][0], self.points[2][1],
+                                                                   self.points[3][0], self.points[3][1],
                                                                    self.color[0], self.color[1],
                                                                    self.color[2], self.alpha))
 
@@ -74,6 +77,9 @@ class Triangle(object):
         new_points_x_2 = int(self.points[2][0] + np.random.normal(0, 30))
         new_points_y_2 = int(self.points[2][1] + np.random.normal(0, 30))
 
+        new_points_x_3 = int(self.points[3][0] + np.random.normal(0, 30))
+        new_points_y_3 = int(self.points[3][1] + np.random.normal(0, 30))
+
         new_color_r = int(self.color[0] + np.random.normal(0, 5))
         new_color_g = int(self.color[1] + np.random.normal(0, 5))
         new_color_b = int(self.color[2] + np.random.normal(0, 5))
@@ -85,7 +91,9 @@ class Triangle(object):
                        (max(0, min(self.width, new_points_x_1)),
                        max(0, min(self.height, new_points_y_1))),
                        (max(0, min(self.width, new_points_x_2)),
-                       max(0, min(self.height, new_points_y_2))))
+                       max(0, min(self.height, new_points_y_2))),
+                       (max(0, min(self.width, new_points_x_3)),
+                        max(0, min(self.height, new_points_y_3))))
 
         self.color = (max(0, min(255, new_color_r)),
                       max(0, min(255, new_color_g)),

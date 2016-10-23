@@ -3,6 +3,8 @@ import random as rn
 import circle
 import ellipse
 import triangle
+import rectangle
+import quadrilateral
 import cv2
 
 class IndividualGen(object):
@@ -41,6 +43,14 @@ class IndividualGen(object):
 
                     self.genes.append(triangle.Triangle(args[1],args[2],args[4]))
 
+                elif self.type == 4:
+
+                    self.genes.append(rectangle.Rectangle(args[1], args[2], args[4]))
+
+                elif self.type == 5:
+
+                    self.genes.append(quadrilateral.Quadrilateral(args[1], args[2], args[4] ) )
+
         else:  # len(args) == 1 :
 
             # Implicity define an individual based on its genes encoding
@@ -67,6 +77,14 @@ class IndividualGen(object):
                 elif self.type == 3:
 
                     self.genes.append(triangle.Triangle(self.height, self.width, 0.1, file.readline()))
+
+                elif self.type == 4:
+
+                    self.genes.append(rectangle.Rectangle(self.height, self.width , 0.1 , file.readline()))
+
+                elif self.type == 5:
+
+                    self.genes.append(quadrilateral.Quadrilateral(self.height , self.width , 0.1 , file.readline()))
 
             file.close()
 
@@ -98,6 +116,17 @@ class IndividualGen(object):
 
                 cv2.fillConvexPoly(overlay,np.asarray(info[0]), info[1])
                 cv2.addWeighted(overlay, info[2], output, 1 - info[2], 0, output)
+
+            elif self.type == 4:
+
+                cv2.rectangle(overlay,info[0],info[1],info[2],-1)
+                cv2.addWeighted(overlay , info[3],output, 1-info[3] , 0, output )
+
+            elif self.type == 5:
+
+                cv2.fillConvexPoly(overlay, np.asarray(info[0]), info[1])
+                cv2.addWeighted(overlay, info[2], output, 1 - info[2], 0, output)
+
 
         return output
 

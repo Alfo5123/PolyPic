@@ -26,7 +26,7 @@ class GeneticAlgorithm(object):
 
      '''
 
-    def __init__(self, generations, population, size, height, width , target):
+    def __init__(self, generations, population, size, height, width , target , type ):
 
         # Set hyperparameters
 
@@ -57,7 +57,7 @@ class GeneticAlgorithm(object):
             scores.sort(key=lambda x: x[0])
 
             # Report best individual per generation
-            if gen % 100 == 0:
+            if gen % 9 == 0:
                 scores[0][1].write("SolutionGA_Error_" + str(gen) + "_" + str(scores[0][0]) + ".jpg")
                 scores[0][1].encode("SolutionGA_Error_" + str(gen) + "_" + str(scores[0][0]) + ".txt")
 
