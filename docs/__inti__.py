@@ -13,8 +13,8 @@ height, width = target.shape[:2]
 #hc.run("SolutionHC_Error_100000_337.268905473.txt")
 
 #Run Simulated Annealing Algorithm
-#sa = sim_annealing.Simulated_Annealing(100001,target,60,2)
-#sa.run()
+sa = sim_annealing.Simulated_Annealing(100001,target,60,3)
+sa.run()
 
 #ind = individual.IndividualGen("SolutionHC_Error_100000_332.787960199.txt")
 #ind.write("MONA_LISA_APROX_2.jpg")
