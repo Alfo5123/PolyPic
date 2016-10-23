@@ -40,7 +40,7 @@ class Ellipse ( object ):
 
             info = args[3].split('-')
             self.center = (int(info[0]), int(info[1]))
-            self.axes = (int(info[2], int(info[3])))
+            self.axes = (int(info[2] ) , int(info[3]) )
             self.rotation = int(info[4])
             self.color = (int(info[5]), int(info[6]), int(info[7]))
             self.alpha = float(info[8])
