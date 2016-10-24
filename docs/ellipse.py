@@ -23,8 +23,8 @@ class Ellipse ( object ):
             self.maxopacity = args[2]
 
             self.center = ( rn.randint(0, self.width), rn.randint(0, self.height) )
-            self.axes =  (  rn.randint(1, max(self.width/3, self.height/3) ) ,
-                            rn.randint(1, max(self.width/3, self.height/3) ) )
+            self.axes =  (  rn.randint(1, max(self.width/5, self.height/5) ) ,
+                            rn.randint(1, max(self.width/5, self.height/5) ) )
             self.rotation = rn.randint ( 0 , 360 )
 
             self.color = (rn.randint(0, 255), rn.randint(0, 255), rn.randint(0, 255))

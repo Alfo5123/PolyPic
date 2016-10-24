@@ -14,3 +14,8 @@ By using just 60 translucent simple shapes (circles, ellipses and triangles, res
 
 <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/MONA_LISA.jpg" width="425"/> <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/MONA_LISA_APROX.jpg" width="425"/> 
 <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/MONA_LISA_APROX_2.jpg" width="425"/> <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/MONA_LISA_APROX_3.jpg" width="425"/> 
+
+
+<img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/STARRY_NIGHT.jpg" width="425"/> <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/STARRY_NIGHT_APROX.jpg" width="425"/> 
+
+

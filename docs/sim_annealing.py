@@ -56,7 +56,7 @@ class Simulated_Annealing(object):
 
         # Iterative optimization to minimize error
 
-        temperature = 300.0
+        temperature = 100.0
 
         for i in range(self.iterations):
 

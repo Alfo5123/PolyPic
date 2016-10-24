@@ -16,9 +16,10 @@ class Refine ( object ):
     '''
 
 
-    def __init__( self , iterations,  type , source , target ):
+    def __init__( self , iterations, maximprovements , type , source , target ):
 
         self.iterations = iterations
+        self.maximprovements = maximprovements
         self.type = type
         self.source = source
         self.target = target
@@ -39,6 +40,7 @@ class Refine ( object ):
 
         min_err = self.fitness( self.source )
         cur = copy.deepcopy( self.source )
+        improvements = 0
 
         for i in range ( self.iterations ):
 
@@ -91,8 +93,10 @@ class Refine ( object ):
             # Update the solution that provides more fitness
             if err < min_err  :
                 min_err = err
+                improvements = improvements + 1
                 cur = copy.deepcopy(next)
                 cv2.imwrite("Refine_Error_" + str(i) + "_" + str(min_err) + ".jpg", cur)
 
-
+            if improvements == self.maximprovements:
+                break
 

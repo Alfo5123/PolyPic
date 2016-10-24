@@ -58,8 +58,8 @@ class IndividualGen(object):
             file = open(args[0], 'r')
 
             self.size = int(file.readline())
-            self.height = int(file.readline())
-            self.width = int(file.readline())
+            self.height = 10*int(file.readline())
+            self.width = 10*int(file.readline())
             self.type = int(file.readline())
 
             self.genes = []
@@ -153,6 +153,9 @@ class IndividualGen(object):
 
         index = rn.randint(0,self.size-1)
         self.genes[index].randomize()
+        #for index in range(self.size):
+        #    if np.random.rand() < 0.7:
+        #        self.genes[index].randomize()
 
 
     def encode( self , filename ):

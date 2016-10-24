@@ -38,9 +38,9 @@ class Triangle(object):
             self.maxopacity = args[2]
 
             info = args[3].split('-')
-            self.points = ((int(info[0]), int(info[1])),
-                           (int(info[2]), int(info[3])),
-                           (int(info[4]), int(info[5])))
+            self.points = ((10*int(info[0]), 10*int(info[1])),
+                           (10*int(info[2]), 10*int(info[3])),
+                           (10*int(info[4]), 10*int(info[5])))
 
             self.color = (int(info[6]), int(info[7]), int(info[8]))
             self.alpha = float(info[9])
