@@ -27,6 +27,7 @@ class Triangle(object):
                            (rn.randint(0, self.width), rn.randint(0, self.height)))
 
             self.color = (rn.randint(0, 255), rn.randint(0, 255), rn.randint(0, 255))
+
             self.alpha = self.maxopacity * rn.random()
 
         elif len(args) == 4:
@@ -38,9 +39,9 @@ class Triangle(object):
             self.maxopacity = args[2]
 
             info = args[3].split('-')
-            self.points = ((10*int(info[0]), 10*int(info[1])),
-                           (10*int(info[2]), 10*int(info[3])),
-                           (10*int(info[4]), 10*int(info[5])))
+            self.points = ((int(info[0]), int(info[1])),
+                           (int(info[2]), int(info[3])),
+                           (int(info[4]), int(info[5])))
 
             self.color = (int(info[6]), int(info[7]), int(info[8]))
             self.alpha = float(info[9])
@@ -77,6 +78,7 @@ class Triangle(object):
         new_color_r = int(self.color[0] + np.random.normal(0, 5))
         new_color_g = int(self.color[1] + np.random.normal(0, 5))
         new_color_b = int(self.color[2] + np.random.normal(0, 5))
+
         new_alpha = self.alpha + np.random.normal(0, 0.5)
 
         # Update randomized values

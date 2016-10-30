@@ -32,3 +32,6 @@ By using just 60 translucent simple shapes (circles, ellipses and triangles, res
 
 <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/LANDSCAPE.jpg" width="425"/> <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/LANDSCAPE_APROX.jpg" width="425"/> 
 
+<img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/MOUNTAIN.jpg" width="425"/> <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/MOUNTAIN_APROX.jpg" width="425"/> 
+
+
