@@ -26,7 +26,9 @@ class Triangle(object):
                            (rn.randint(0, self.width), rn.randint(0, self.height)),
                            (rn.randint(0, self.width), rn.randint(0, self.height)))
 
-            self.color = (rn.randint(0, 255), rn.randint(0, 255), rn.randint(0, 255))
+            c = rn.randint(0,255)
+            self.color = ( c , c , c ) ;
+            #self.color = (rn.randint(0, 255), rn.randint(0, 255), rn.randint(0, 255))
 
             self.alpha = self.maxopacity * rn.random()
 
@@ -75,9 +77,11 @@ class Triangle(object):
         new_points_x_2 = int(self.points[2][0] + np.random.normal(0, 30))
         new_points_y_2 = int(self.points[2][1] + np.random.normal(0, 30))
 
-        new_color_r = int(self.color[0] + np.random.normal(0, 5))
-        new_color_g = int(self.color[1] + np.random.normal(0, 5))
-        new_color_b = int(self.color[2] + np.random.normal(0, 5))
+        #new_color_r = int(self.color[0] + np.random.normal(0, 5))
+        #new_color_g = int(self.color[1] + np.random.normal(0, 5))
+        #new_color_b = int(self.color[2] + np.random.normal(0, 5))
+
+        new_color = int(self.color[2] + np.random.normal(0, 5))
 
         new_alpha = self.alpha + np.random.normal(0, 0.5)
 
@@ -89,8 +93,8 @@ class Triangle(object):
                        (max(0, min(self.width, new_points_x_2)),
                        max(0, min(self.height, new_points_y_2))))
 
-        self.color = (max(0, min(255, new_color_r)),
-                      max(0, min(255, new_color_g)),
-                      max(0, min(255, new_color_b)))
+        self.color = (max(0, min(255, new_color)),
+                      max(0, min(255, new_color)),
+                      max(0, min(255, new_color)))
 
         self.alpha = max(0.0, min(self.maxopacity, new_alpha))
