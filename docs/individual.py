@@ -4,7 +4,6 @@ import circle
 import ellipse
 import triangle
 import rectangle
-import quadrilateral
 import cv2
 
 class IndividualGen(object):
@@ -47,9 +46,6 @@ class IndividualGen(object):
 
                     self.genes.append(rectangle.Rectangle(args[1], args[2], args[4]))
 
-                elif self.type == 5:
-
-                    self.genes.append(quadrilateral.Quadrilateral(args[1], args[2], args[4] ) )
 
         else:  # len(args) == 1 :
 
@@ -58,9 +54,11 @@ class IndividualGen(object):
             file = open(args[0], 'r')
 
             self.size = int(file.readline())
-            self.height = 10*int(file.readline())
-            self.width = 10*int(file.readline())
+            self.height = int(file.readline())
+            self.width = int(file.readline())
             self.type = int(file.readline())
+
+            self.maxopacity = 0.3
 
             self.genes = []
 
@@ -68,23 +66,19 @@ class IndividualGen(object):
 
                 if self.type == 1:
 
-                    self.genes.append(circle.Circle(self.height, self.width, 0.1, file.readline()))
+                    self.genes.append(circle.Circle(self.height, self.width, self.maxopacity, file.readline()))
 
                 elif self.type == 2:
 
-                    self.genes.append(ellipse.Ellipse(self.height, self.width, 0.1, file.readline()))
+                    self.genes.append(ellipse.Ellipse(self.height, self.width, self.maxopacity, file.readline()))
 
                 elif self.type == 3:
 
-                    self.genes.append(triangle.Triangle(self.height, self.width, 0.1, file.readline()))
+                    self.genes.append(triangle.Triangle(self.height, self.width, self.maxopacity, file.readline()))
 
                 elif self.type == 4:
 
-                    self.genes.append(rectangle.Rectangle(self.height, self.width , 0.1 , file.readline()))
-
-                elif self.type == 5:
-
-                    self.genes.append(quadrilateral.Quadrilateral(self.height , self.width , 0.1 , file.readline()))
+                    self.genes.append(rectangle.Rectangle(self.height, self.width , self.maxopacity, file.readline()))
 
             file.close()
 
@@ -121,11 +115,6 @@ class IndividualGen(object):
 
                 cv2.rectangle(overlay,info[0],info[1],info[2],-1)
                 cv2.addWeighted(overlay , info[3],output, 1-info[3] , 0, output )
-
-            elif self.type == 5:
-
-                cv2.fillConvexPoly(overlay, np.asarray(info[0]), info[1])
-                cv2.addWeighted(overlay, info[2], output, 1 - info[2], 0, output)
 
 
         return output

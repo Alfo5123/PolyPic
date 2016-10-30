@@ -22,7 +22,7 @@ class Circle(object):
             self.maxopacity = args[2]
 
             self.center = (rn.randint(0, self.width), rn.randint(0, self.height))
-            self.radius = rn.randint(1, max( self.width / 10 , self.height  / 10 ))
+            self.radius = rn.randint(1, 40) #max( self.width / 10 , self.height  / 10 ))
             self.color = (rn.randint(0, 255), rn.randint(0, 255), rn.randint(0, 255))
             self.alpha = self.maxopacity * rn.random()
 
@@ -36,7 +36,7 @@ class Circle(object):
 
             info = args[3].split('-')
             self.center = (int(info[0]), int(info[1]))
-            self.radius = int(info[2])
+            self.radius = 10*int(info[2])
             self.color = (int(info[3]), int(info[4]), int(info[5]))
             self.alpha = float(info[6])
 

@@ -38,7 +38,7 @@ class HillClimbing(object):
 
         if len(args) == 0:
             # Start with a random initial solution
-            solution = individual.IndividualGen(self.size, self.height, self.width, self.type , 0.1 )
+            solution = individual.IndividualGen(self.size, self.height, self.width, self.type , 0.2 )
             min_err = self.height * self.width
 
         else:

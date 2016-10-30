@@ -6,16 +6,16 @@ import refine
 import cv2
 
 # Load the image
-target = cv2.imread("/home/alfredo/PolyPic/examples/IM_01_TRAIN.jpg")
+target = cv2.imread("/home/alfredo/PolyPic/examples/LANDSCAPE.jpg")
 height, width = target.shape[:2]
 
 #Run Hill Climbing Algorithm
-#hc = hill_climb.HillClimbing( 1000001 , target , 60 , 1)
-#hc.run("SolutionHC_Error_100000_1108.23972222.txt")
+#hc = hill_climb.HillClimbing( 100001 , target , 50 , 2)
+#hc.run("SolutionHC_Error_100000_1757.40254414.txt")
 
 #Run Simulated Annealing Algorithm
-#sa = sim_annealing.Simulated_Annealing(100001,target,50,3)
-#sa.run("SolutionSA_Error_100000_1206.72011111.txt")
+sa = sim_annealing.Simulated_Annealing(100001,target,100,1)
+sa.run()
 
 # Refine
 #source = cv2.imread("/home/alfredo/PolyPic/examples/STARRY_NIGHT_APROX.jpg")
@@ -24,9 +24,9 @@ height, width = target.shape[:2]
 #ex = refine.Refine( 10000 , 50 , 1 , source , target )
 #ex.run()
 
-#ind = individual.IndividualGen("SolutionHC_Error_1000000_1041.07122222.txt")
-#ind.write("STARRY_NIGHT_APROX.jpg")
-#ind.encode("STARRY_NIGHT_1_1041.07122222.txt")
+#ind = individual.IndividualGen("SolutionHC_Error_100000_749.862888889.txt")
+#ind.write("STARRY_NIGHT_APROX_2.jpg")
+#ind.encode("STARRY_NIGHT_1_749.862888889.txt")
 
 #Run Genetic Algorithm
 #ga = gen_algo.GeneticAlgorithm(100, 100, 100, height, width , target , 3)
