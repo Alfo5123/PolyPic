@@ -36,7 +36,7 @@ class Circle(object):
 
             info = args[3].split('-')
             self.center = (int(info[0]), int(info[1]))
-            self.radius = 10*int(info[2])
+            self.radius = int(info[2])
             self.color = (int(info[3]), int(info[4]), int(info[5]))
             self.alpha = float(info[6])
 
