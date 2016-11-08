@@ -3,7 +3,7 @@ import random as rn
 import circle
 import ellipse
 import triangle
-import rectangle
+import quadrilateral
 import cv2
 
 class IndividualGen(object):
@@ -44,7 +44,7 @@ class IndividualGen(object):
 
                 elif self.type == 4:
 
-                    self.genes.append(rectangle.Rectangle(args[1], args[2], args[4]))
+                    self.genes.append(quadrilateral.Quadrilateral(args[1], args[2], args[4]))
 
 
         else:  # len(args) == 1 :
@@ -78,7 +78,7 @@ class IndividualGen(object):
 
                 elif self.type == 4:
 
-                    self.genes.append(rectangle.Rectangle(self.height, self.width , self.maxopacity, file.readline()))
+                    self.genes.append(quadrilateral.Quadrilateral(self.height, self.width , self.maxopacity, file.readline()))
 
             file.close()
 
@@ -113,9 +113,8 @@ class IndividualGen(object):
 
             elif self.type == 4:
 
-                cv2.rectangle(overlay,info[0],info[1],info[2],-1)
-                cv2.addWeighted(overlay , info[3],output, 1-info[3] , 0, output )
-
+                cv2.fillConvexPoly(overlay, np.asarray(info[0]), info[1])
+                cv2.addWeighted(overlay, info[2], output, 1 - info[2], 0, output)
 
         return output
 

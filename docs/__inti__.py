@@ -6,16 +6,16 @@ import refine
 import cv2
 
 # Load the image
-target = cv2.imread("/home/alfredo/PolyPic/examples/ELEPHANT.jpg")
+target = cv2.imread("/home/alfredo/PolyPic/examples/THREE_PEARS.jpg")
 height, width = target.shape[:2]
 
 #Run Hill Climbing Algorithm
-hc = hill_climb.HillClimbing( 100001 , target , 50 , 3)
-hc.run("SolutionSA_Error_100000_646.797153153.txt")
+#hc = hill_climb.HillClimbing( 100001 , target , 50 , 3)
+#hc.run("SolutionSA_Error_100000_646.797153153.txt")
 
 #Run Simulated Annealing Algorithm
-#sa = sim_annealing.Simulated_Annealing(100001,target,50,3)
-#sa.run()
+sa = sim_annealing.Simulated_Annealing(100001,target,50,4)
+sa.run()
 
 # Refine
 #source = cv2.imread("/home/alfredo/PolyPic/examples/STARRY_NIGHT_APROX.jpg")

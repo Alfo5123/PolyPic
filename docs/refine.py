@@ -1,7 +1,7 @@
 import circle
 import ellipse
 import triangle
-import rectangle
+import quadrilateral
 import cv2
 import numpy as np
 import copy
@@ -71,11 +71,11 @@ class Refine ( object ):
 
             elif self.type == 4:
 
-                r = rectangle.Rectangle(self.height,self.width, 0.1)
+                r = quadrilateral.Quadrilateral(self.height,self.width, 0.1)
                 info = r.getInfo()
 
-                cv2.rectangle(cur,info[0],info[1],info[2],-1)
-                cv2.addWeighted(cur , info[3],next, 1-info[3] , 0, next)
+                cv2.fillConvexPoly(cur, np.asarray(info[0]), info[1])
+                cv2.addWeighted(cur, info[2], next, 1 - info[2], 0, next)
 
 
             # Compute dissimilarity
