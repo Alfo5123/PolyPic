@@ -34,3 +34,4 @@ By using just 60 translucent simple shapes (circles, ellipses and triangles, res
 
 <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/ELEPHANT.jpg" width="425"/>  <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/ELEPHANT_APROX.jpg" width="425"/>  
 
+<img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/BIRDS.jpg" width="425"/>  <img src="https://github.com/Alfo5123/PolyPic/blob/master/examples/BIRDS_APROX.jpg" width="425"/>  

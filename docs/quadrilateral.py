@@ -23,9 +23,9 @@ class Quadrilateral(object):
             self.width = args[1]
             self.maxopacity = args[2]
 
-            self.angle = rn.randint(-180,180)
-            self.side_1 = rn.randint(0,100)
-            self.side_2 = rn.randint(0,100)
+            self.angle = rn.randint(0,360)
+            self.side_1 = rn.randint(0,30)
+            self.side_2 = rn.randint(0,30)
 
             self.p1 = (rn.randint(0, self.width), rn.randint(0, self.height))
 
@@ -53,7 +53,7 @@ class Quadrilateral(object):
             self.maxopacity = args[2]
 
             info = args[3].split('-')
-            self.p1 = ((int(info[0]),int(info[1])))
+            self.p1 = ((int(info[0]),(int(info[1]))))
             self.side_1 = int(info[2])
             self.side_2 = int(info[3])
             self.angle = int(info[4] )
@@ -96,10 +96,10 @@ class Quadrilateral(object):
         new_p_0 = int(self.p1[0] + np.random.normal(0, 30))
         new_p_1 = int(self.p1[1] + np.random.normal(0, 30))
 
-        new_side_1 = int(self.side_1 + np.random.normal(0, 50))
-        new_side_2 = int(self.side_2 + np.random.normal(0, 50))
+        new_side_1 = int(self.side_1 + np.random.normal(0, 10))
+        new_side_2 = int(self.side_2 + np.random.normal(0, 10))
 
-        new_angle = int(self.angle + np.random.normal(0, 50))
+        new_angle = int(self.angle + np.random.normal(0, 30))
 
         new_color_r = int(self.color[0] + np.random.normal(0, 5))
         new_color_g = int(self.color[1] + np.random.normal(0, 5))
@@ -110,12 +110,12 @@ class Quadrilateral(object):
         # Update randomized values
 
         self.p1 = ( max ( 0 , min ( self.width , new_p_0 ) ) ,
-                    max ( 0 , min ( self.width , new_p_1 ) ) )
+                    max ( 0 , min ( self.height , new_p_1 ) ) )
 
-        self.side_1 = max ( 0 , min ( 200 , new_side_1 ) )
-        self.side_2 = max ( 0 , min ( 200 , new_side_2 ) )
+        self.side_1 = max ( 0 , min ( 50 , new_side_1 ) )
+        self.side_2 = max ( 0 , min ( 50 , new_side_2 ) )
 
-        self.angle = max ( -180 , min ( 180 , new_angle ) )
+        self.angle = max ( 0 , min ( 360 , new_angle ) )
 
         p2 = (int(self.p1[0] + self.side_1 * np.cos(np.pi * self.angle / 180.)),
               int(self.p1[1] + self.side_1 * np.sin(np.pi * self.angle / 180.)))
